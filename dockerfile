@@ -4,10 +4,10 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json first to leverage Docker cache
-COPY package.json ./
+COPY package.json package-lock.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --frozen-lockfile
 
 # Copy the rest of the application code
 COPY . .
@@ -15,5 +15,5 @@ COPY . .
 # Expose the port that Vite runs on
 EXPOSE 5173
 
-# Command to start the application
-CMD ["npm", "run", "dev"]
+# Command to start the application with host exposure
+CMD ["npm", "run", "dev", "--", "--host"]
