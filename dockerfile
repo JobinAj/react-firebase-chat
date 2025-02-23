@@ -15,5 +15,5 @@ COPY . .
 # Expose the port that Vite runs on
 EXPOSE 5173
 
-# Command to start the application with host exposure
-CMD ["npm", "run", "dev", "--", "--host"]
+# Start the Vite server and bind it to all interfaces
+CMD ["sh", "-c", "npm run dev -- --host 0.0.0.0"]
